@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">FaceSaver</string>
+    <string name="main_menu_1">Settings</string>
+    <string name="main_menu_2">About</string>
+    <string name="main_menu_3">Refresh</string>
+    <string name="main_menu_4">Internal Log</string>
+    
+    <string name="main_card_statistic_title">Statistic</string>
+    <string name="main_card_statistic_indicator">Saved for %d times</string>
+    <string name="main_card_history_title">History</string>
+    <string name="main_card_history_indicator">Check your saving history</string>
+    <string name="main_card_profile_title">Application Profile</string>
+    <string name="main_card_profile_indicator">%d profiles</string>
+    <string name="main_card_help">Help and Support</string>
+
+    <string name="accessibility_desc">Core service to listen the foreground application and perform protect operation</string>
+
+    <string name="til_error_inv_param">Invalid parameter</string>
+    <string name="toast_copied">Copied</string>
+    <string name="toast_perm_denied">Permission Denied</string>
+    <string name="ad_pb">Yes</string>
+    <string name="ad_nb">Cancel</string>
+    <string name="ad_pb2">Yes</string>
+    <string name="ad_nb2">No</string>
+    <string name="ad_nb3">Close</string>
+    <string name="ad_nb4">Clear</string>
+    <string name="ad_processing">Processing…</string>
+    <string name="empty_view">Empty</string>
+
+    <!--About-->
+    <string name="au_l_1">Version</string>
+    <string name="au_l_2">Developer</string>
+    <string name="au_l_2_1">Alcatraz,Mr_Dennis(Coolapk)</string>
+    <string name="au_l_3">Check sourcecode</string>
+    <string name="au_l_4">Open source Licenses</string>
+    <string name="au_l_4_1">Respect to opensource</string>
+    <string name="au_osp">Opensource Projects</string>
+
+</resources>

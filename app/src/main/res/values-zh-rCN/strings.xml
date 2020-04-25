@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 一般 -->
+    <string name="app_name">砸脸保护器(暂定</string>
+    <string name="main_menu_1">设置</string>
+    <string name="main_menu_2">关于</string>
+    <string name="main_menu_3">刷新</string>
+    <string name="main_menu_4">内部日志</string>
+
+    <string name="main_card_statistic_title">统计</string>
+    <string name="main_card_statistic_indicator">保护了你%d次</string>
+    <string name="main_card_history_title">历史记录</string>
+    <string name="main_card_history_indicator">查看你的被砸记录(</string>
+    <string name="main_card_profile_title">配置生效范围</string>
+    <string name="main_card_profile_indicator">%d个应用程序</string>
+    <string name="main_card_help">帮助与支持</string>
+
+    <string name="accessibility_desc">核心服务，用于检测前台窗口并执行保护操作</string>
+
+    <string name="til_error_inv_param">无效参数</string>
+    <string name="toast_copied">已复制</string>
+    <string name="toast_perm_denied">权限被拒绝</string>
+    <string name="ad_pb">确定</string>
+    <string name="ad_nb">取消</string>
+    <string name="ad_pb2">是</string>
+    <string name="ad_nb2">否</string>
+    <string name="ad_nb3">关闭</string>
+    <string name="ad_nb4">清除</string>
+    <string name="ad_processing">进行中…</string>
+    <string name="empty_view">无结果</string>
+
+    <!--关于-->
+    <string name="au_l_1">版本</string>
+    <string name="au_l_2">开发者</string>
+    <string name="au_l_2_1">Alcatraz,Mr_Dennis(Coolapk)</string>
+    <string name="au_l_3">查看源码</string>
+    <string name="au_l_4">开放源代码许可</string>
+    <string name="au_l_4_1">向开源致敬</string>
+    <string name="au_osp">开源相关</string>
+</resources>
