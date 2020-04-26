@@ -16,6 +16,8 @@
     <string name="main_card_help">帮助与支持</string>
 
     <string name="accessibility_desc">核心服务，用于检测前台窗口并执行保护操作</string>
+    <string name="float_title">Afk Protect</string>
+    <string name="float_countdown">%d秒后锁定</string>
 
     <string name="til_error_inv_param">无效参数</string>
     <string name="toast_copied">已复制</string>

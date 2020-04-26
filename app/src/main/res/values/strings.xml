@@ -14,6 +14,8 @@
     <string name="main_card_help">Help and Support</string>
 
     <string name="accessibility_desc">Core service to listen the foreground application and perform protect operation</string>
+    <string name="float_title">Afk Protect</string>
+    <string name="float_countdown">%ds to lock</string>
 
     <string name="til_error_inv_param">Invalid parameter</string>
     <string name="toast_copied">Copied</string>
