@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_developer_mode_black_24dp"
+                    android:src="@drawable/ic_lock_outline_black_24dp"
                     android:tint="@color/base_gray_tint"
                     app:srcCompat="@drawable/ic_lock_outline_black_24dp" />
 
@@ -52,7 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/float_title"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/float_countdown"

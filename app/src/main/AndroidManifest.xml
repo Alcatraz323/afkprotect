@@ -3,6 +3,7 @@
     package="io.alcatraz.facesaver">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,8 +23,10 @@
         <activity android:name=".activities.PreferenceActivity" />
         <activity android:name=".activities.LogActivity" />
         <activity android:name=".activities.AboutActivity" />
+        <activity android:name=".activities.RecordActivity" />
 
         <service android:name=".services.ProtectorService"
+            android:label="@string/accessibility_label"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -31,6 +34,15 @@
             <meta-data android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_protect_main"/>
         </service>
+
+        <receiver android:name=".receivers.LockScreenAdmin" android:label="@string/admin_label"
+            android:description="@string/admin_desc" android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data android:name="android.app.device_admin"
+                android:resource="@xml/lockscreen_admin" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

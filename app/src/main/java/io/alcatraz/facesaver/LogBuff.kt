@@ -15,6 +15,8 @@ object LogBuff {
     var COLOR_LEVEL_DEBUG = "#1565C0"
     var HTML_BRLINE = "<br/>"
 
+    var accessibilityStatus = false
+
     private var whole_message = ""
     private var num = 0
 

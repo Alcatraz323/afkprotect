@@ -13,9 +13,19 @@
     <string name="main_card_profile_indicator">%d profiles</string>
     <string name="main_card_help">Help and Support</string>
 
+    <string name="accessibility_label">Afk Protect - Core</string>
     <string name="accessibility_desc">Core service to listen the foreground application and perform protect operation</string>
     <string name="float_title">Afk Protect</string>
     <string name="float_countdown">%ds to lock</string>
+    <string name="float_locking">Locking</string>
+    <string name="admin_label">Afk protect - Auto lock</string>
+    <string name="admin_desc">enable auto lockscreen feature</string>
+
+    <string name="record_title">Record</string>
+    <string name="record_start_time">Afk auto lock start time</string>
+    <string name="record_end_time">Afk auto lock end time</string>
+    <string name="record_elapsed_time">Lock period</string>
+    <string name="record_screen_on_times">Screen turned on times</string>
 
     <string name="til_error_inv_param">Invalid parameter</string>
     <string name="toast_copied">Copied</string>

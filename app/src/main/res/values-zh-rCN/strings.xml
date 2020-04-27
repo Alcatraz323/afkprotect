@@ -15,9 +15,19 @@
     <string name="main_card_profile_indicator">%d个应用程序</string>
     <string name="main_card_help">帮助与支持</string>
 
+    <string name="accessibility_label">睡眠保护 - 核心服务</string>
     <string name="accessibility_desc">核心服务，用于检测前台窗口并执行保护操作</string>
-    <string name="float_title">Afk Protect</string>
+    <string name="float_title">睡眠保护</string>
     <string name="float_countdown">%d秒后锁定</string>
+    <string name="float_locking">正在锁定</string>
+    <string name="admin_label">睡眠保护 - 自动锁屏</string>
+    <string name="admin_desc">激活自动锁屏功能</string>
+
+    <string name="record_title">记录数据</string>
+    <string name="record_start_time">自动锁定开始于</string>
+    <string name="record_end_time">锁定结束于</string>
+    <string name="record_elapsed_time">时长</string>
+    <string name="record_screen_on_times">期间亮屏次数</string>
 
     <string name="til_error_inv_param">无效参数</string>
     <string name="toast_copied">已复制</string>
