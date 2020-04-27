@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 import io.alcatraz.facesaver.Constants
+import io.alcatraz.facesaver.FaceSaverApplication
+import io.alcatraz.facesaver.core.AccessibilityEventTaskManager
 import io.alcatraz.facesaver.utils.PermissionInterface
 import io.alcatraz.facesaver.utils.SharedPreferenceUtil
 
@@ -71,6 +73,11 @@ open class CompatWithPipeActivity : AppCompatActivity() {
         intentFilter.addAction(Constants.BROADCAST_ACTION_UPDATE_PREFERENCES)
         updatePreferenceReceiver = UpdatePreferenceReceiver()
         registerReceiver(updatePreferenceReceiver, intentFilter)
+    }
+
+    fun getAEventTaskMgr(): AccessibilityEventTaskManager {
+        val application: FaceSaverApplication = application as FaceSaverApplication
+        return application.aEventTaskMgr.get()
     }
 
     override fun onDestroy() {

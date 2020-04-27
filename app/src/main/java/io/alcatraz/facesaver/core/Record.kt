@@ -6,7 +6,7 @@ import android.os.Parcelable
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Record(val startTime: Long) : Parcelable {
+class Record(var startTime: Long) : Parcelable {
     var endTime: Long = 0
     var screenOnTimes = 0
 

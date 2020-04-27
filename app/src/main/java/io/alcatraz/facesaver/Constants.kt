@@ -5,6 +5,9 @@ import java.util.LinkedList
 import io.alcatraz.facesaver.beans.QueryElement
 
 object Constants {
+    const val DATA_HISTORY_VERSION = 1
+    const val DATA_PROFILE_VERSION = 1
+
     const val MY_PACKAGE_NAME = "io.alcatraz.facesaver"
     const val MY_PROJECT_CODE = "facesaver"
     const val MY_GITHUB = "https://github.com/Alcatraz323/"

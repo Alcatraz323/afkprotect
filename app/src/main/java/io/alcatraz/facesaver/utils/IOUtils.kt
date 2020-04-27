@@ -1,14 +1,28 @@
 package io.alcatraz.facesaver.utils
 
+import android.content.Context
+import io.alcatraz.facesaver.Constants
+import io.alcatraz.facesaver.LogBuff
 import java.io.File
 
 object IOUtils {
-    fun write(file: File, content: String) {
+    fun getHistoryPath(context: Context): String {
+        val root = context.filesDir
+        return root.absolutePath + "/history_v" + Constants.DATA_HISTORY_VERSION + ".json"
+    }
+
+    fun getProfilesPath(context: Context): String {
+        val root = context.filesDir
+        return root.absolutePath + "/profiles_v" + Constants.DATA_PROFILE_VERSION + ".json"
+    }
+
+    fun write(dir: String, content: String) {
+        val file = File(dir)
         if (!file.exists()) {
             try {
                 file.parentFile.mkdirs()
                 file.createNewFile()
-            } catch (ignored : Exception) {
+            } catch (ignored: Exception) {
             }
         }
         file.writeText(content);
@@ -17,6 +31,15 @@ object IOUtils {
     fun read(dir: String, rm: ReadMonitor?): String {
         var content = ""
         val file = File(dir)
+        if (!file.exists()) {
+            try {
+                file.parentFile.mkdirs()
+                file.createNewFile()
+                return content
+            } catch (e: Exception) {
+                LogBuff.E(e.message?:"")
+            }
+        }
         file.forEachLine {
             content += "\n"
             content += it

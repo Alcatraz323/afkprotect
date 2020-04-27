@@ -259,8 +259,12 @@ object Utils {
         return drawableUp
     }
 
-    fun <T> json2Object(s: String, type: Class<T>): T {
+    fun <T> json2Object(s: String, type: Class<T>): T? {
         return Gson().fromJson(s, type)
+    }
+
+    fun <T> obj2Json(obj: T) : String{
+        return Gson().toJson(obj)
     }
 
     fun extractPackageName(process: String): String {

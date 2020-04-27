@@ -22,6 +22,7 @@ import io.alcatraz.facesaver.LogBuff
 import io.alcatraz.facesaver.R
 import io.alcatraz.facesaver.activities.RecordActivity
 import io.alcatraz.facesaver.databinding.FloatToggleBinding
+import io.alcatraz.facesaver.utils.IOUtils
 import io.alcatraz.facesaver.utils.Utils
 
 
@@ -34,10 +35,9 @@ class AccessibilityEventTaskManager(val context: Context) {
     private var timer: CountDownTimer? = null
     private val screenReceiver = ScreenBroadcastReceiver()
 
-    private val profiles: MutableMap<String, ApplicationProfile> =
-        mutableMapOf(
-            "tv.danmaku.bili" to ApplicationProfile("tv.danmaku.bili", 5000)    //Test value
-        )
+    internal val profiles: MutableMap<String, ApplicationProfile> = mutableMapOf()
+    internal val records: MutableList<Record> = mutableListOf()
+
     private val ignorePackage: MutableList<String> =
         mutableListOf(Constants.MY_PACKAGE_NAME)   //Default ignore myself or trigger self issue
 
@@ -57,7 +57,7 @@ class AccessibilityEventTaskManager(val context: Context) {
 
     private val protectorTask: Runnable = Runnable {
         if (!hasShownWindow) {
-            LogBuff.I("Afk limit reached for "+currentProfile.pack)
+            LogBuff.I("Afk limit reached for " + currentProfile.pack)
             showWarningWindow()
             hasShownWindow = true
         }
@@ -71,6 +71,32 @@ class AccessibilityEventTaskManager(val context: Context) {
     private val windowHandler: Handler = Handler()
 
     init {
+        try {
+            val savedProfiles = Utils.json2Object(
+                IOUtils.read(IOUtils.getProfilesPath(context), null),
+                Profiles::class.java
+            )
+            if (savedProfiles != null) {
+                profiles.putAll(savedProfiles.profileMap)
+            }
+            LogBuff.I("Loaded profiles, size = ${profiles.size}")
+        } catch (e: Exception) {
+            LogBuff.E(e.message ?: "")
+        }
+
+        try {
+            val savedHistory = Utils.json2Object(
+                IOUtils.read(IOUtils.getHistoryPath(context), null),
+                History::class.java
+            )
+            if (savedHistory != null) {
+                records.addAll(savedHistory.historyList)
+            }
+            LogBuff.I("Loaded history, size = ${records.size}")
+        } catch (e: Exception) {
+            LogBuff.E(e.message ?: "")
+        }
+
         slideOutAnimation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(p0: Animation?) {}
 
@@ -83,6 +109,7 @@ class AccessibilityEventTaskManager(val context: Context) {
 
             override fun onAnimationStart(p0: Animation?) {}
         })
+
         slideOutAnimationNoCallback.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(p0: Animation?) {}
 
@@ -93,6 +120,7 @@ class AccessibilityEventTaskManager(val context: Context) {
 
             override fun onAnimationStart(p0: Animation?) {}
         })
+
         floatBinding.floatToggle.setOnClickListener {
             clearOnInterrupt()
             taskHandler.postDelayed(protectorTask, currentProfile.afkTime.toLong())
@@ -100,10 +128,10 @@ class AccessibilityEventTaskManager(val context: Context) {
     }
 
     internal fun initService(accessibilityService: AccessibilityService?) {
-        if(accessibilityService == null){
+        if (accessibilityService == null) {
             LogBuff.W("detaching accessibility service")
             this.accessibilityService?.unregisterReceiver(screenReceiver)
-        }else{
+        } else {
             LogBuff.I("attached accessibility service, register receivers")
             registerReceiver()
         }
@@ -131,17 +159,80 @@ class AccessibilityEventTaskManager(val context: Context) {
         callRemoveWarningWindow(false)
     }
 
+    internal fun addOrReplaceProfile(profile: ApplicationProfile) {
+        if (profiles.containsKey(profile.pack)) {
+            profiles.remove(profile.pack)
+        }
+        profiles[profile.pack] = profile
+        saveProfiles()
+    }
+
+    internal fun removeProfile(pack: String) {
+        if (profiles.containsKey(pack)) {
+            profiles.remove(pack)
+        }
+        saveProfiles()
+    }
+
+    internal fun clearProfile() {
+        profiles.clear()
+        saveProfiles()
+    }
+
+    internal fun addHistory(history: Record) {
+        records.add(history)
+        saveHistory()
+    }
+
+    internal fun removeHistory(startTime: Long) {
+        for ((index, i) in records.withIndex()) {
+            if (i.startTime == startTime) {
+                records.removeAt(index)
+                saveHistory()
+                return
+            }
+        }
+    }
+
+    internal fun clearHistory() {
+        records.clear()
+        saveHistory()
+    }
+
+    internal fun saveAll() {
+        saveProfiles()
+        saveHistory()
+    }
+
+    internal fun clearAll() {
+        clearProfile()
+        clearHistory()
+    }
+
+    private fun saveProfiles() {
+        val toSave = Profiles()
+        toSave.profileMap = profiles
+        IOUtils.write(IOUtils.getProfilesPath(context), Utils.obj2Json(toSave))
+    }
+
+    private fun saveHistory() {
+        val toSave = History()
+        toSave.historyList = records
+        IOUtils.write(IOUtils.getHistoryPath(context), Utils.obj2Json(toSave))
+    }
+
     private fun showRecord() {
-        LogBuff.I("calling record show")
-        val intent = Intent(context,RecordActivity::class.java)
-        intent.putExtra(RecordActivity.KEY_RECORD_DATA,record)
+        LogBuff.I("calling record show/save")
+        addHistory(record ?: Record(System.currentTimeMillis()))
+        val intent = Intent(context, RecordActivity::class.java)
+        intent.putExtra(RecordActivity.KEY_RECORD_DATA, record)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
         record = null
     }
 
     private fun lockScreen() {
-        if(deviceMgrApi.lockScreen()){
+        if (deviceMgrApi.lockScreen()) {
             record = Record(System.currentTimeMillis())
         }
     }
@@ -224,7 +315,7 @@ class AccessibilityEventTaskManager(val context: Context) {
         layoutParams.y = Utils.Dp2Px(context, 128f)
     }
 
-    private fun registerReceiver(){
+    private fun registerReceiver() {
         val filter = IntentFilter()
         filter.addAction(Intent.ACTION_SCREEN_ON)
         filter.addAction(Intent.ACTION_USER_PRESENT)
@@ -242,7 +333,7 @@ class AccessibilityEventTaskManager(val context: Context) {
                 record?.addScreenOnT()
             } else if (Intent.ACTION_USER_PRESENT == action) {
                 LogBuff.I("screen receiver: received unlock")
-                if(record!=null){
+                if (record != null) {
                     record?.endTime = System.currentTimeMillis()
                     showRecord()
                 }
