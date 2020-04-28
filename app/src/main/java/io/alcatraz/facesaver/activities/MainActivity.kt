@@ -48,6 +48,12 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
                     Uri.parse(Constants.SUPPORT_URL)
                 )
             )
+            R.id.main_card_history -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    HistoryActivity::class.java
+                )
+            )
         }
     }
 

@@ -7,6 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.PixelFormat
+import android.media.AudioFocusRequest
+import android.media.AudioManager
 import android.os.Build
 import android.os.CountDownTimer
 import android.os.Handler
@@ -29,13 +31,16 @@ import io.alcatraz.facesaver.utils.Utils
 class AccessibilityEventTaskManager(val context: Context) {
     private var accessibilityService: AccessibilityService? = null
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     private val layoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private val deviceMgrApi = DeviceMgrApi(context)
     private var timer: CountDownTimer? = null
     private val screenReceiver = ScreenBroadcastReceiver()
 
-    internal val profiles: MutableMap<String, ApplicationProfile> = mutableMapOf()
+    internal val profiles: MutableMap<String, ApplicationProfile> = mutableMapOf(
+        "tv.danmaku.bili" to ApplicationProfile("tv.danmaku.bili", 5000)
+    )
     internal val records: MutableList<Record> = mutableListOf()
 
     private val ignorePackage: MutableList<String> =
@@ -62,6 +67,16 @@ class AccessibilityEventTaskManager(val context: Context) {
             hasShownWindow = true
         }
     }
+
+    private val focusListener = AudioManager.OnAudioFocusChangeListener {
+        if (it == AudioManager.AUDIOFOCUS_GAIN) {
+            LogBuff.I("Got audio focus")
+        } else if (it == AudioManager.AUDIOFOCUS_LOSS) {
+            LogBuff.I("Losing audio focus")
+        }
+    }
+
+    private var focusRequest: AudioFocusRequest? = null
 
     private val warningWindowTask: Runnable = Runnable {
         callRemoveWarningWindow(true)
@@ -165,6 +180,7 @@ class AccessibilityEventTaskManager(val context: Context) {
         }
         profiles[profile.pack] = profile
         saveProfiles()
+        LogBuff.I("profile updated for ${profile.pack}")
     }
 
     internal fun removeProfile(pack: String) {
@@ -172,16 +188,19 @@ class AccessibilityEventTaskManager(val context: Context) {
             profiles.remove(pack)
         }
         saveProfiles()
+        LogBuff.I("removed profile for $pack")
     }
 
     internal fun clearProfile() {
         profiles.clear()
         saveProfiles()
+        LogBuff.I("cleared profile")
     }
 
     internal fun addHistory(history: Record) {
         records.add(history)
         saveHistory()
+        LogBuff.I("history added for ${history.startTime}")
     }
 
     internal fun removeHistory(startTime: Long) {
@@ -192,19 +211,23 @@ class AccessibilityEventTaskManager(val context: Context) {
                 return
             }
         }
+        LogBuff.I("removed history for time $startTime")
     }
 
     internal fun clearHistory() {
         records.clear()
         saveHistory()
+        LogBuff.I("cleared history")
     }
 
     internal fun saveAll() {
+        LogBuff.I("saving all")
         saveProfiles()
         saveHistory()
     }
 
     internal fun clearAll() {
+        LogBuff.W("clear all action")
         clearProfile()
         clearHistory()
     }
@@ -213,12 +236,14 @@ class AccessibilityEventTaskManager(val context: Context) {
         val toSave = Profiles()
         toSave.profileMap = profiles
         IOUtils.write(IOUtils.getProfilesPath(context), Utils.obj2Json(toSave))
+        LogBuff.I("saved profile")
     }
 
     private fun saveHistory() {
         val toSave = History()
         toSave.historyList = records
         IOUtils.write(IOUtils.getHistoryPath(context), Utils.obj2Json(toSave))
+        LogBuff.I("saved history")
     }
 
     private fun showRecord() {
@@ -232,20 +257,37 @@ class AccessibilityEventTaskManager(val context: Context) {
     }
 
     private fun lockScreen() {
+        LogBuff.I("Locking screen")
         if (deviceMgrApi.lockScreen()) {
+            LogBuff.I("lock successful, starting record")
             record = Record(System.currentTimeMillis())
         }
     }
 
     private fun killPlayer() {
-        accessibilityService?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
+        var rtime = 0
+        LogBuff.I("performing GLOBAL_BACK for ${currentProfile.backClickTimes} times")
+        while (rtime++ < currentProfile.backClickTimes)
+            accessibilityService?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
+
+        if (currentProfile.doPauseMusicBroadcast) {
+            val pauseIntent = Intent()
+            pauseIntent.action = "com.android.music.musicservicecommand.pause"
+            pauseIntent.putExtra("command", "pause")
+            context.sendBroadcast(pauseIntent)
+            LogBuff.I("sending generic music pause intent")
+        }
+
+        if (currentProfile.doRequestAudioFocus) {
+            requestAudioFocus()
+        }
     }
 
     private fun startTimerView() {
         timer?.cancel()
         floatBinding.floatCountdown.text =
-            String.format(context.getString(R.string.float_countdown), 3)
-        timer = object : CountDownTimer(8000, 1000) {
+            String.format(context.getString(R.string.float_countdown), 7)
+        timer = object : CountDownTimer(7000, 1000) {
             override fun onFinish() {
                 floatBinding.floatCountdown.text = context.getString(R.string.float_locking)
             }
@@ -315,6 +357,37 @@ class AccessibilityEventTaskManager(val context: Context) {
         layoutParams.y = Utils.Dp2Px(context, 128f)
     }
 
+    private fun requestAudioFocus(){
+        val result: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+                .setOnAudioFocusChangeListener(focusListener)
+                .build()
+            audioManager.requestAudioFocus(focusRequest!!)
+        } else {
+            audioManager.requestAudioFocus(
+                focusListener,
+                AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN
+            )
+        }
+        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            LogBuff.I("audio focus request granted")
+        } else {
+            LogBuff.I("audio focus request denied")
+        }
+    }
+
+    private fun abandonAudioFocus(){
+        LogBuff.I("abandon audio focus")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (focusRequest != null) {
+                audioManager.abandonAudioFocusRequest(focusRequest!!)
+            }
+        }else{
+            audioManager.abandonAudioFocus(focusListener)
+        }
+    }
+
     private fun registerReceiver() {
         val filter = IntentFilter()
         filter.addAction(Intent.ACTION_SCREEN_ON)
@@ -336,6 +409,7 @@ class AccessibilityEventTaskManager(val context: Context) {
                 if (record != null) {
                     record?.endTime = System.currentTimeMillis()
                     showRecord()
+                    abandonAudioFocus()
                 }
             }
         }

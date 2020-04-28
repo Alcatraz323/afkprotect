@@ -29,6 +29,20 @@
     <string name="record_elapsed_time">时长</string>
     <string name="record_screen_on_times">期间亮屏次数</string>
 
+    <string name="profile_configure_title">配置</string>
+    <string name="profile_configure_afk_time">超时时间</string>
+    <string name="profile_configure_hour">时</string>
+    <string name="profile_configure_minute">分</string>
+    <string name="profile_configure_second">秒</string>
+    <string name="profile_configure_subtitle_config">设置</string>
+    <string name="profile_configure_try_stop_playing">尝试发送通用广播停止播放器</string>
+    <string name="profile_configure_try_audiofocus_volume">尝试抢占焦点以停止播放器</string>
+    <string name="profile_configure_try_exit">在超时执行时模拟返回键</string>
+    <string name="profile_configure_try_exit_times">执行次数(有些应用需要2次退出)</string>
+    <string name="profile_configure_app_pick">选择App</string>
+    <string name="profile_search">搜索</string>
+    <string name="profile_search_hint">应用名/包名</string>
+
     <string name="til_error_inv_param">无效参数</string>
     <string name="toast_copied">已复制</string>
     <string name="toast_perm_denied">权限被拒绝</string>
@@ -44,7 +58,7 @@
     <!--关于-->
     <string name="au_l_1">版本</string>
     <string name="au_l_2">开发者</string>
-    <string name="au_l_2_1">Alcatraz,Mr_Dennis(Coolapk)</string>
+    <string name="au_l_2_1">Alcatraz, Mr_Dennis</string>
     <string name="au_l_3">查看源码</string>
     <string name="au_l_4">开放源代码许可</string>
     <string name="au_l_4_1">向开源致敬</string>

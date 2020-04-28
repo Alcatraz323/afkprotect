@@ -172,6 +172,7 @@
                                 android:layout_height="24dp"
                                 android:layout_margin="16dp"
                                 android:tint="#A5A5A5"
+                                android:transitionName="@string/transition_profile_icon"
                                 app:srcCompat="@drawable/ic_apps_black_24dp" />
 
                             <LinearLayout
@@ -195,7 +196,8 @@
                                     android:id="@+id/main_card_profile_mgr_indicator"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/main_card_profile_indicator" />
+                                    android:text="@string/main_card_profile_indicator"
+                                    android:transitionName="@string/transition_profile_indicator" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -333,6 +335,7 @@
         android:clickable="true"
         android:focusable="true"
         android:tint="#ffffff"
+        android:transitionName="@string/transition_profile_fab"
         android:visibility="visible"
         app:layout_anchor="@id/main_card_profile_mgr"
         app:layout_anchorGravity="bottom|end"

@@ -1,6 +1,7 @@
 package io.alcatraz.facesaver.utils
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 
@@ -19,6 +20,16 @@ object PackageCtlUtils {
         } catch (e: PackageManager.NameNotFoundException) {
             pkg
         }
+    }
+
+    fun getLabel(context: Context, applicationInfo: ApplicationInfo) : String{
+        val pm = context.packageManager
+        return pm.getApplicationLabel(applicationInfo).toString()
+    }
+
+    fun getIcon(context: Context, applicationInfo: ApplicationInfo) : Drawable?{
+        val pm = context.packageManager
+        return pm.getApplicationIcon(applicationInfo)
     }
 
     @Synchronized

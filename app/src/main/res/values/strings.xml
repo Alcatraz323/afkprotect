@@ -4,7 +4,7 @@
     <string name="main_menu_2">About</string>
     <string name="main_menu_3">Refresh</string>
     <string name="main_menu_4">Internal Log</string>
-    
+
     <string name="main_card_statistic_title">Statistic</string>
     <string name="main_card_statistic_indicator">Saved for %d times</string>
     <string name="main_card_history_title">History</string>
@@ -27,6 +27,20 @@
     <string name="record_elapsed_time">Lock period</string>
     <string name="record_screen_on_times">Screen turned on times</string>
 
+    <string name="profile_configure_title">Configure</string>
+    <string name="profile_configure_afk_time">Afk time</string>
+    <string name="profile_configure_hour">Hour</string>
+    <string name="profile_configure_minute">Min.</string>
+    <string name="profile_configure_second">Sec.</string>
+    <string name="profile_configure_subtitle_config">Configs</string>
+    <string name="profile_configure_try_stop_playing">Try stop player</string>
+    <string name="profile_configure_try_audiofocus_volume">Try gain audio focus to stop player</string>
+    <string name="profile_configure_try_exit">Try perform global back press</string>
+    <string name="profile_configure_try_exit_times">Back times</string>
+    <string name="profile_configure_app_pick">Pick app</string>
+    <string name="profile_search">Search</string>
+    <string name="profile_search_hint">App name/Package Name</string>
+
     <string name="til_error_inv_param">Invalid parameter</string>
     <string name="toast_copied">Copied</string>
     <string name="toast_perm_denied">Permission Denied</string>
@@ -42,10 +56,16 @@
     <!--About-->
     <string name="au_l_1">Version</string>
     <string name="au_l_2">Developer</string>
-    <string name="au_l_2_1">Alcatraz,Mr_Dennis(Coolapk)</string>
+    <string name="au_l_2_1">Alcatraz, Mr_Dennis</string>
     <string name="au_l_3">Check sourcecode</string>
     <string name="au_l_4">Open source Licenses</string>
     <string name="au_l_4_1">Respect to opensource</string>
     <string name="au_osp">Opensource Projects</string>
 
+    <!--If you are translating, do not translate below-->
+    <string name="transition_profile_indicator" translatable="false">transition_profile_indicator</string>
+    <string name="transition_profile_icon" translatable="false">transition_profile_icon</string>
+    <string name="transition_profile_fab" translatable="false">transition_profile_fab</string>
+    <string name="transition_profile_general_app_icon" translatable="false">transition_profile_general_app_icon</string>
+    <string name="transition_profile_general_app_name" translatable="false">transition_profile_general_app_name</string>
 </resources>
