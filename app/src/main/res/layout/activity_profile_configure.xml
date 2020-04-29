@@ -66,6 +66,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
+                        android:text="@string/profile_configure_app_pick"
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch"
                         android:textSize="16sp"
@@ -76,6 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
+                        android:text="@string/profile_configure_no_pack"
                         android:textAllCaps="false" />
 
                 </LinearLayout>
@@ -111,7 +113,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
 
                 <ImageView
                     android:id="@+id/configure_afk_time_icon"
@@ -144,6 +147,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
                             android:hint="@string/profile_configure_hour"
+                            android:inputType="number"
                             android:text="0" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -162,6 +166,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
                             android:hint="@string/profile_configure_minute"
+                            android:inputType="number"
                             android:text="30" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -180,6 +185,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
                             android:hint="@string/profile_configure_second"
+                            android:inputType="number"
                             android:text="0" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
@@ -235,7 +241,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
-                        android:checked="false"
+                        android:checked="true"
                         android:clickable="false"
                         android:focusable="false" />
                 </LinearLayout>
@@ -277,7 +283,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
-                        android:checked="false"
+                        android:checked="true"
                         android:clickable="false"
                         android:focusable="false" />
                 </LinearLayout>
@@ -319,7 +325,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
-                        android:checked="false"
+                        android:checked="true"
                         android:clickable="false"
                         android:focusable="false" />
                 </LinearLayout>
@@ -330,15 +336,16 @@
                 android:id="@+id/configure_back_times"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
+                    android:inputType="number"
                     android:hint="@string/profile_configure_try_exit_times"
                     android:text="1" />
             </com.google.android.material.textfield.TextInputLayout>

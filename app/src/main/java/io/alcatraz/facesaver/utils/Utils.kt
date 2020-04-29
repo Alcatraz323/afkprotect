@@ -37,7 +37,7 @@ import com.google.gson.Gson
 import io.alcatraz.facesaver.R
 
 object Utils {
-    fun Dp2Px(context: Context, dp: Float): Int {
+    fun dp2Px(context: Context, dp: Float): Int {
         val scale = context.resources.displayMetrics.density
         return (dp * scale + 0.5f).toInt()
     }

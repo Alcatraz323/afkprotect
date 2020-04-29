@@ -1,6 +1,7 @@
 package io.alcatraz.facesaver.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.alcatraz.facesaver.R
+import io.alcatraz.facesaver.activities.ProfileConfigureActivity
 import io.alcatraz.facesaver.core.ApplicationProfile
 import io.alcatraz.facesaver.utils.PackageCtlUtils
 
@@ -48,6 +50,16 @@ class ProfileAdapter(
         }
 
         holder.txvBackTimes.text = profile.backClickTimes.toString()
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context,ProfileConfigureActivity::class.java)
+            intent.action = ProfileConfigureActivity.ACTION_LOAD_FORMER
+            intent.putExtra(
+                ProfileConfigureActivity.ACTION_LOAD_FORMER,
+                profile.pack
+            )
+            context.startActivity(intent)
+        }
     }
 
 }

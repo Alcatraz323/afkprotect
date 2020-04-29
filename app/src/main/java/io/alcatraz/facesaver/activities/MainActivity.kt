@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import io.alcatraz.facesaver.Constants
 import io.alcatraz.facesaver.R
-import io.alcatraz.facesaver.core.AccessibilityEventTaskManager
 import io.alcatraz.facesaver.extended.CompatWithPipeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,7 +33,7 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
                     AboutActivity::class.java
                 )
             )
-            R.id.menu_log_refresh -> initData()
+            R.id.menu_main_refresh -> initData()
             R.id.menu_main_log -> startActivity(Intent(this@MainActivity, LogActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
@@ -54,6 +53,18 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
                     HistoryActivity::class.java
                 )
             )
+            R.id.main_card_profile_mgr, R.id.main_profile_mgr_modify -> {
+                val transIntent = Intent(
+                    this@MainActivity,
+                    ProfileGeneralActivity::class.java
+                )
+                startTransition(
+                    transIntent,
+                    main_card_profile_mgr_image,
+                    main_card_profile_mgr_indicator,
+                    main_profile_mgr_modify
+                )
+            }
         }
     }
 
@@ -77,5 +88,12 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
             String.format(getString(R.string.main_card_statistic_indicator), manager.records.size)
         main_card_profile_mgr_indicator.text =
             String.format(getString(R.string.main_card_profile_indicator), manager.profiles.size)
+    }
+
+    override fun onResume() {
+        if (doneFirstInitialize) {
+            initData()
+        }
+        super.onResume()
     }
 }

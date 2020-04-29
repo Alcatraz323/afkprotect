@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alcatraz.support.v4.appcompat.StatusBarUtil
+import io.alcatraz.facesaver.Constants
 import io.alcatraz.facesaver.R
 import io.alcatraz.facesaver.adapters.PackageAdapter
 import io.alcatraz.facesaver.extended.CompatWithPipeActivity
@@ -31,7 +32,9 @@ class AppPickActivity : CompatWithPipeActivity() {
     private fun initialize() {
         adapter = PackageAdapter(this, apps)
         initViews()
-        initData()
+        pick_app_toolbar.post {
+            initData()
+        }
     }
 
     private fun initViews() {
@@ -51,6 +54,12 @@ class AppPickActivity : CompatWithPipeActivity() {
         apps.clear()
         Thread(Runnable {
             val data = packageManager.getInstalledPackages(0)
+            for ((index, i) in data.withIndex()){
+                if(i.packageName == Constants.MY_PACKAGE_NAME){
+                    data.removeAt(index)
+                    break
+                }
+            }
             apps.addAll(data)
             runOnUiThread {
                 adapter.notifyDataSetChanged()
@@ -62,7 +71,7 @@ class AppPickActivity : CompatWithPipeActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val menuInflater = MenuInflater(this)
-        menuInflater.inflate(R.menu.activity_preset_general_menu, menu)
+        menuInflater.inflate(R.menu.activity_pick_app_menu, menu)
 
         val searchView = menu!!.findItem(R.id.action_search).actionView as SearchView
         searchView.queryHint = getString(R.string.profile_search_hint)
@@ -70,7 +79,7 @@ class AppPickActivity : CompatWithPipeActivity() {
         underline.setBackgroundColor(Color.TRANSPARENT)
 
         progressBar = menu.findItem(R.id.action_progress_bar).actionView as ProgressBar
-        val dp24: Int = Utils.Dp2Px(this, 24f)
+        val dp24: Int = Utils.dp2Px(this, 24f)
         val params = ViewGroup.LayoutParams(dp24, dp24)
         progressBar.layoutParams = params
 

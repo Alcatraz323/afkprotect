@@ -36,7 +36,7 @@ class Easter(private val context: Context) {
         }
     }
 
-    fun showEaster() {
+    private fun showEaster() {
         context.startActivity(
             Intent(
                 Intent.ACTION_VIEW,
@@ -45,7 +45,7 @@ class Easter(private val context: Context) {
         )
     }
 
-    fun clearCounter() {
+    private fun clearCounter() {
         current = 0
     }
 }

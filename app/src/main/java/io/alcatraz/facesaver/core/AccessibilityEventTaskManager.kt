@@ -38,9 +38,7 @@ class AccessibilityEventTaskManager(val context: Context) {
     private var timer: CountDownTimer? = null
     private val screenReceiver = ScreenBroadcastReceiver()
 
-    internal val profiles: MutableMap<String, ApplicationProfile> = mutableMapOf(
-        "tv.danmaku.bili" to ApplicationProfile("tv.danmaku.bili", 5000)
-    )
+    internal val profiles: MutableMap<String, ApplicationProfile> = mutableMapOf()
     internal val records: MutableList<Record> = mutableListOf()
 
     private val ignorePackage: MutableList<String> =
@@ -186,9 +184,9 @@ class AccessibilityEventTaskManager(val context: Context) {
     internal fun removeProfile(pack: String) {
         if (profiles.containsKey(pack)) {
             profiles.remove(pack)
+            LogBuff.I("removed profile for $pack")
         }
         saveProfiles()
-        LogBuff.I("removed profile for $pack")
     }
 
     internal fun clearProfile() {
@@ -208,10 +206,11 @@ class AccessibilityEventTaskManager(val context: Context) {
             if (i.startTime == startTime) {
                 records.removeAt(index)
                 saveHistory()
+                LogBuff.I("removed history for time $startTime")
                 return
             }
         }
-        LogBuff.I("removed history for time $startTime")
+        LogBuff.W("history for time $startTime not found")
     }
 
     internal fun clearHistory() {
@@ -261,6 +260,7 @@ class AccessibilityEventTaskManager(val context: Context) {
         if (deviceMgrApi.lockScreen()) {
             LogBuff.I("lock successful, starting record")
             record = Record(System.currentTimeMillis())
+            record?.packName = currentProfile.pack
         }
     }
 
@@ -354,10 +354,10 @@ class AccessibilityEventTaskManager(val context: Context) {
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
         layoutParams.gravity = Gravity.END or Gravity.TOP
         layoutParams.x = 0
-        layoutParams.y = Utils.Dp2Px(context, 128f)
+        layoutParams.y = Utils.dp2Px(context, 128f)
     }
 
-    private fun requestAudioFocus(){
+    private fun requestAudioFocus() {
         val result: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
                 .setOnAudioFocusChangeListener(focusListener)
@@ -377,13 +377,13 @@ class AccessibilityEventTaskManager(val context: Context) {
         }
     }
 
-    private fun abandonAudioFocus(){
+    private fun abandonAudioFocus() {
         LogBuff.I("abandon audio focus")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (focusRequest != null) {
                 audioManager.abandonAudioFocusRequest(focusRequest!!)
             }
-        }else{
+        } else {
             audioManager.abandonAudioFocus(focusListener)
         }
     }

@@ -25,7 +25,7 @@ class LogActivity : CompatWithPipeActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun initData() {
+    private fun initData() {
         log_console_box.text = LogBuff.finalLog
     }
 

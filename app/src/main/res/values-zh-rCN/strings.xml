@@ -40,6 +40,9 @@
     <string name="profile_configure_try_exit">在超时执行时模拟返回键</string>
     <string name="profile_configure_try_exit_times">执行次数(有些应用需要2次退出)</string>
     <string name="profile_configure_app_pick">选择App</string>
+    <string name="profile_configure_no_pack">目标应用不可为空</string>
+    <string name="profile_configure_invalid_param">无效</string>
+    <string name="profile_configure_too_low_second">时间不能短于15秒</string>
     <string name="profile_search">搜索</string>
     <string name="profile_search_hint">应用名/包名</string>
 

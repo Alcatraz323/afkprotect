@@ -1,7 +1,6 @@
 package io.alcatraz.facesaver.utils
 
 import android.content.Context
-import android.content.SharedPreferences
 import io.alcatraz.facesaver.Constants
 
 class SharedPreferenceUtil {

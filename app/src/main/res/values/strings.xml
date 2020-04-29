@@ -38,6 +38,9 @@
     <string name="profile_configure_try_exit">Try perform global back press</string>
     <string name="profile_configure_try_exit_times">Back times</string>
     <string name="profile_configure_app_pick">Pick app</string>
+    <string name="profile_configure_no_pack">Package should not be null</string>
+    <string name="profile_configure_invalid_param">Invalid</string>
+    <string name="profile_configure_too_low_second">Time can\'t be less than 15 seconds</string>
     <string name="profile_search">Search</string>
     <string name="profile_search_hint">App name/Package Name</string>
 

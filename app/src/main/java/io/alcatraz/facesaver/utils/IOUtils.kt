@@ -25,7 +25,7 @@ object IOUtils {
             } catch (ignored: Exception) {
             }
         }
-        file.writeText(content);
+        file.writeText(content)
     }
 
     fun read(dir: String, rm: ReadMonitor?): String {

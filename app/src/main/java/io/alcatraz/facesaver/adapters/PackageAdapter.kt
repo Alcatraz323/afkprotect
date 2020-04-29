@@ -28,7 +28,7 @@ class PackageAdapter(
     private lateinit var filter: PackageFilter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PackHolder {
-        val root = inflater.inflate(R.layout.item_preference_header, parent, false)
+        val root = inflater.inflate(R.layout.item_app_pick, parent, false)
         return PackHolder(root)
     }
 
@@ -56,7 +56,7 @@ class PackageAdapter(
         }
     }
 
-    fun getFilter(): Filter {
+    private fun getFilter(): Filter {
         return filter
     }
 
@@ -104,7 +104,7 @@ class PackageAdapter(
 
 class PackHolder(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
-    var packIcon: ImageView = itemView.findViewById(R.id.item_pref_header_image)
-    var txvLabel: TextView = itemView.findViewById(R.id.item_pref_header_title)
-    var txvPack: TextView = itemView.findViewById(R.id.item_pref_header_summary)
+    var packIcon: ImageView = itemView.findViewById(R.id.app_pick_pack_icon)
+    var txvLabel: TextView = itemView.findViewById(R.id.app_pick_pack_label)
+    var txvPack: TextView = itemView.findViewById(R.id.app_pick_pack_name)
 }

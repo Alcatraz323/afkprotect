@@ -6,10 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
-
-import io.alcatraz.facesaver.R
 import io.alcatraz.facesaver.beans.PreferenceHeader
 import io.alcatraz.facesaver.databinding.ItemPreferenceHeaderBinding
 

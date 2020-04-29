@@ -39,7 +39,7 @@ class HistoryActivity : CompatWithPipeActivity() {
             AnimationUtils.loadLayoutAnimation(this, R.anim.layout_fall_down)
         history_recycler.layoutAnimation = controller
         history_recycler.adapter = adapter
-        StatusBarUtil.setColor(this, Color.parseColor("#212121"),0);
+        StatusBarUtil.setColor(this, Color.parseColor("#212121"),0)
     }
 
     private fun initData() {

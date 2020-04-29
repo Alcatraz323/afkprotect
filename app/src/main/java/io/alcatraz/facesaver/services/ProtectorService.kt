@@ -12,16 +12,8 @@ import io.alcatraz.facesaver.LogBuff
 import io.alcatraz.facesaver.core.AccessibilityEventTaskManager
 
 class ProtectorService : AccessibilityService() {
-    private val syncHandler = Handler()
     private var targetEventPackage: CharSequence = ""
     private var targetActivity: CharSequence = ""
-
-    private val registerTask: Runnable = Runnable {
-        getAEventTaskMgr().accessibilityUpdate(
-            targetEventPackage.toString(),
-            targetActivity.toString()
-        )
-    }
 
     override fun onInterrupt() {
         getAEventTaskMgr().clearOnInterrupt()

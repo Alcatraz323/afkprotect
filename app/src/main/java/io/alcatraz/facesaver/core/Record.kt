@@ -9,6 +9,7 @@ import java.util.*
 class Record(var startTime: Long) : Parcelable {
     var endTime: Long = 0
     var screenOnTimes = 0
+    var packName = ""
 
     constructor(parcel: Parcel) : this(parcel.readLong()) {
         endTime = parcel.readLong()
