@@ -5,6 +5,9 @@
     <string name="main_menu_3">Refresh</string>
     <string name="main_menu_4">Internal Log</string>
 
+    <string name="update_title">20200429</string>
+    <string name="update_info">Initial release</string>
+
     <string name="main_card_statistic_title">Statistic</string>
     <string name="main_card_statistic_indicator">Saved for %d times</string>
     <string name="main_card_history_title">History</string>
@@ -43,6 +46,26 @@
     <string name="profile_configure_too_low_second">Time can\'t be less than 15 seconds</string>
     <string name="profile_search">Search</string>
     <string name="profile_search_hint">App name/Package Name</string>
+
+    <string name="pref_trigger_category">Trigger</string>
+    <string name="pref_trigger_summary">Some trigger value</string>
+    <string name="pref_trigger_1_title">Ignore some apps window state</string>
+    <string name="pref_trigger_1_summary">Some overlay app may cause misread of window change, use this to ignore them</string>
+
+    <!--SetupWizard-->
+    <string name="setup_step_next">Next</string>
+    <string name="setup_step_next_final">Done</string>
+    <string name="setup_step_before">Forward</string>
+    <string name="setup_1_intro">Hello my friend, before you can start, let\'s take some minutes to complete the setup\n\n
+    This is a tool help you to auto exit/pause video or some keep-screen-on app after you performed a custom period of afk such as fell asleep</string>
+    <string name="setup_2_float_window_title">Float window overlay</string>
+    <string name="setup_2_accessibility_title">Accessibility</string>
+    <string name="setup_2_device_admin_title">Device Admin(Lock screen)</string>
+    <string name="setup_2_device_admin_summary">Once you grant this permission you need to turn off this permission manually before you uninstall</string>
+    <string name="setup_granted">Granted</string>
+    <string name="setup_denied">Denied, click to request</string>
+    <string name="setup_current_update">Current Update</string>
+    <string name="setup_permission">Permissions</string>
 
     <string name="til_error_inv_param">Invalid parameter</string>
     <string name="toast_copied">Copied</string>

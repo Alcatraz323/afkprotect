@@ -65,6 +65,12 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
                     main_profile_mgr_modify
                 )
             }
+            R.id.main_card_setting -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    PreferenceActivity::class.java
+                )
+            )
         }
     }
 

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:name=".FaceSaverApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.SetupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
@@ -28,6 +28,7 @@
         <activity android:name=".activities.ProfileConfigureActivity" />
         <activity android:name=".activities.AppPickActivity" />
         <activity android:name=".activities.ProfileGeneralActivity" />
+        <activity android:name=".activities.MainActivity" />
 
         <service android:name=".services.ProtectorService"
             android:label="@string/accessibility_label"

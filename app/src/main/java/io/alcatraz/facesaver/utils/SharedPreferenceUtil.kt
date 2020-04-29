@@ -3,8 +3,8 @@ package io.alcatraz.facesaver.utils
 import android.content.Context
 import io.alcatraz.facesaver.Constants
 
-class SharedPreferenceUtil {
-
+object SharedPreferenceUtil {
+    private const val FILE_NAME = Constants.MY_PACKAGE_NAME + "_preferences"
     fun put(context: Context, key: String, value: Any) {
         val sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -18,32 +18,17 @@ class SharedPreferenceUtil {
         editor.apply()
     }
 
-    fun getPref(context: Context, key: String, defValue: Any): Any? {
+    @Suppress("UNCHECKED_CAST")
+    fun <T> getPref(context: Context, key: String, defValue: T): T? {
         val sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        var value: Any? = null
         when (defValue) {
-            is Int -> sharedPreferences.getInt(key, defValue)
-            is Boolean -> sharedPreferences.getBoolean(key, defValue)
-            is Float -> sharedPreferences.getFloat(key, defValue)
-            is Long -> sharedPreferences.getLong(key, defValue)
-            is String -> sharedPreferences.getString(key, defValue)
+            is Int -> value = sharedPreferences.getInt(key, defValue)
+            is Boolean -> value = sharedPreferences.getBoolean(key, defValue)
+            is Float -> value = sharedPreferences.getFloat(key, defValue)
+            is Long -> value = sharedPreferences.getLong(key, defValue)
+            is String -> value = sharedPreferences.getString(key, defValue)
         }
-        return null
-    }
-
-    companion object {
-        private const val FILE_NAME = Constants.MY_PACKAGE_NAME + "_preferences"
-        private var mInstance: SharedPreferenceUtil? = null
-
-        val instance: SharedPreferenceUtil
-            get() {
-                if (mInstance == null) {
-                    synchronized(SharedPreferenceUtil::class.java) {
-                        if (mInstance == null) {
-                            mInstance = SharedPreferenceUtil()
-                        }
-                    }
-                }
-                return mInstance!!
-            }
+        return value as T
     }
 }

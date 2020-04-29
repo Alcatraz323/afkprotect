@@ -18,6 +18,7 @@ object Constants {
 
     //===============================================
 
+    const val PREF_TRIGGER_IGNORE_PACKAGE = "ignore_trigger_package"
 
     //===============================================
 

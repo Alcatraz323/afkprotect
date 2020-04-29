@@ -74,7 +74,6 @@ open class CompatWithPipeActivity : AppCompatActivity() {
     fun onReloadPreferenceDone() {}
 
     fun loadPreference() {
-        val spf = SharedPreferenceUtil.instance
 
     }
 

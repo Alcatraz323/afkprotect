@@ -231,6 +231,14 @@ class AccessibilityEventTaskManager(val context: Context) {
         clearHistory()
     }
 
+    internal fun isAccessibilityServiceOnline(): Boolean {
+        return accessibilityService != null
+    }
+
+    internal fun isDeviceAdminAuthorized(): Boolean {
+        return deviceMgrApi.isAdminActive()
+    }
+
     private fun saveProfiles() {
         val toSave = Profiles()
         toSave.profileMap = profiles
@@ -349,7 +357,8 @@ class AccessibilityEventTaskManager(val context: Context) {
         }
         layoutParams.format = PixelFormat.RGBA_8888
         layoutParams.flags =
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
         layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
         layoutParams.gravity = Gravity.END or Gravity.TOP

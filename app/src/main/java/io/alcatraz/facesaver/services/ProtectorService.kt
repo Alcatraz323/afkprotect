@@ -42,10 +42,14 @@ class ProtectorService : AccessibilityService() {
                     }
                 }
             }
+            AccessibilityEvent.TYPE_VIEW_CLICKED, AccessibilityEvent.TYPE_VIEW_LONG_CLICKED,
+            AccessibilityEvent.TYPE_VIEW_SELECTED, AccessibilityEvent.TYPE_VIEW_SCROLLED -> {
+                //This is complicated, may be implemented in future version
+            }
         }
     }
 
-    private fun doUpdate(){
+    private fun doUpdate() {
         getAEventTaskMgr().accessibilityUpdate(
             targetEventPackage.toString(),
             targetActivity.toString()
@@ -57,8 +61,8 @@ class ProtectorService : AccessibilityService() {
         return application.aEventTaskMgr.get()
     }
 
-    companion object{
-        fun startAccessibilityAuthorize(context: Context){
+    companion object {
+        fun startAccessibilityAuthorize(context: Context) {
             val accessibilityIntent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
             context.startActivity(accessibilityIntent)
         }

@@ -5,7 +5,9 @@ import android.view.MenuItem
 import io.alcatraz.facesaver.R
 import io.alcatraz.facesaver.beans.PreferenceHeader
 import io.alcatraz.facesaver.extended.CompatWithPipeActivity
+import io.alcatraz.facesaver.fragments.TriggerPreferenceFragment
 import kotlinx.android.synthetic.main.activity_preference_inner.*
+
 
 class PreferenceInnerActivity : CompatWithPipeActivity() {
 
@@ -21,7 +23,12 @@ class PreferenceInnerActivity : CompatWithPipeActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         when (header.icon_res) {
-
+            R.drawable.ic_settings_black_24dp->{
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.preference_act_fragment_container, TriggerPreferenceFragment())
+                    .commit()
+            }
         }
     }
 

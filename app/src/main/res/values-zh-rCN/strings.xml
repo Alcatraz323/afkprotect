@@ -7,6 +7,9 @@
     <string name="main_menu_3">刷新</string>
     <string name="main_menu_4">内部日志</string>
 
+    <string name="update_title">20200429</string>
+    <string name="update_info">首次发布</string>
+
     <string name="main_card_statistic_title">统计</string>
     <string name="main_card_statistic_indicator">保护了你%d次</string>
     <string name="main_card_history_title">历史记录</string>
@@ -45,6 +48,25 @@
     <string name="profile_configure_too_low_second">时间不能短于15秒</string>
     <string name="profile_search">搜索</string>
     <string name="profile_search_hint">应用名/包名</string>
+
+    <string name="pref_trigger_category">触发器</string>
+    <string name="pref_trigger_summary">部分触发阈值</string>
+    <string name="pref_trigger_1_title">忽略某些应用对窗口变化的影响</string>
+    <string name="pref_trigger_1_summary">有些悬浮应用会对窗口识别产生影响，设置此项以忽略他们</string>
+
+    <string name="setup_step_next">下一步</string>
+    <string name="setup_step_next_final">完成</string>
+    <string name="setup_step_before">上一步</string>
+    <string name="setup_1_intro">你好朋友,在正式开始之前,让我们花一些时间完成设置\n\n
+    这是一个用来在长时间的挂机，比如睡着后停止/退出视频或其他保持亮屏应用并锁屏的工具</string>
+    <string name="setup_2_float_window_title">悬浮窗</string>
+    <string name="setup_2_accessibility_title">无障碍</string>
+    <string name="setup_2_device_admin_title">设备管理员(用于锁屏)</string>
+    <string name="setup_2_device_admin_summary">无障碍锁屏8.0以上才有，这个比较通用，注意，你开启这个权限之后需要解除管理员才能卸载/清除数据</string>
+    <string name="setup_granted">已授予</string>
+    <string name="setup_denied">被拒绝，点击申请</string>
+    <string name="setup_current_update">当前更新</string>
+    <string name="setup_permission">权限</string>
 
     <string name="til_error_inv_param">无效参数</string>
     <string name="toast_copied">已复制</string>

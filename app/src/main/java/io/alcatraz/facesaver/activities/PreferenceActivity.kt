@@ -11,8 +11,9 @@ import io.alcatraz.facesaver.beans.PreferenceHeader
 import io.alcatraz.facesaver.extended.CompatWithPipeActivity
 import kotlinx.android.synthetic.main.activity_preference.*
 
+
 class PreferenceActivity : CompatWithPipeActivity() {
-    private lateinit var headers: List<PreferenceHeader>
+    private val headers: MutableList<PreferenceHeader> = mutableListOf()
     private lateinit var adapter: PreferenceListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +53,11 @@ class PreferenceActivity : CompatWithPipeActivity() {
     }
 
     private fun prepareHeader() {
-        headers = listOf()
+        val headerTriggers = PreferenceHeader(
+            getString(R.string.pref_trigger_category),
+            getString(R.string.pref_trigger_summary),
+            R.drawable.ic_settings_black_24dp
+        )
+        headers.add(headerTriggers)
     }
 }
