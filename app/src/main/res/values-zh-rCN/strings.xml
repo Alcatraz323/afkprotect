@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 一般 -->
-    <string name="app_name">砸脸保护器(暂定</string>
+    <string name="app_name">睡了吗？</string>
     <string name="main_menu_1">设置</string>
     <string name="main_menu_2">关于</string>
     <string name="main_menu_3">刷新</string>
     <string name="main_menu_4">内部日志</string>
 
-    <string name="update_title">20200429</string>
-    <string name="update_info">首次发布</string>
+    <string name="update_title">20200430</string>
+    <string name="update_info">1.修复内测时搜索问题\n
+    2.添加忽略部分窗口设置\n
+    3.应用名/包名变更\n</string>
 
     <string name="main_card_statistic_title">统计</string>
     <string name="main_card_statistic_indicator">保护了你%d次</string>
@@ -46,6 +48,9 @@
     <string name="profile_configure_no_pack">目标应用不可为空</string>
     <string name="profile_configure_invalid_param">无效</string>
     <string name="profile_configure_too_low_second">时间不能短于15秒</string>
+    <string name="profile_configure_tutorial_notice_title">教程/注意(重要)</string>
+    <string name="profile_configure_tutorial_notice">在第一次设置某个应用配置时可能需要重启那个应用以激活计时器，计时器将在窗口改变时重置
+    如果目标应用存在定时弹窗广告，本应用将可能没有效果，试验的话你可以设置到15秒来试试效果，本人测试过15分钟，半小时bilibli,有效。补充，有些悬浮应用会影响窗口识别，请去设置进行忽略配置</string>
     <string name="profile_search">搜索</string>
     <string name="profile_search_hint">应用名/包名</string>
 
@@ -87,5 +92,7 @@
     <string name="au_l_3">查看源码</string>
     <string name="au_l_4">开放源代码许可</string>
     <string name="au_l_4_1">向开源致敬</string>
+    <string name="au_l_5">支持开发</string>
+    <string name="au_l_5_1">帮开发者续下服务器(不是软件服务器)</string>
     <string name="au_osp">开源相关</string>
 </resources>

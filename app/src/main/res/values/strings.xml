@@ -1,12 +1,14 @@
 <resources>
-    <string name="app_name">FaceSaver</string>
+    <string name="app_name">Afk Protect</string>
     <string name="main_menu_1">Settings</string>
     <string name="main_menu_2">About</string>
     <string name="main_menu_3">Refresh</string>
     <string name="main_menu_4">Internal Log</string>
 
-    <string name="update_title">20200429</string>
-    <string name="update_info">Initial release</string>
+    <string name="update_title">20200430</string>
+    <string name="update_info">1.Fixed Internal test search issue\n
+    2.add overlay ignore setting\n
+    3.package name change/app name change\n</string>
 
     <string name="main_card_statistic_title">Statistic</string>
     <string name="main_card_statistic_indicator">Saved for %d times</string>
@@ -42,8 +44,12 @@
     <string name="profile_configure_try_exit_times">Back times</string>
     <string name="profile_configure_app_pick">Pick app</string>
     <string name="profile_configure_no_pack">Package should not be null</string>
+    <string name="profile_configure_tutorial_notice_title">Tutorial/Notice(Essential)</string>
+    <string name="profile_configure_tutorial_notice">You may need to restart Activity in the target application to activate timer for the first time you setup profile, the timer will reset when the window is changed
+    ,you may set 15 secs to try the effect. Also some overlay app may affect window recognize, you can go settings to ignore them</string>
     <string name="profile_configure_invalid_param">Invalid</string>
     <string name="profile_configure_too_low_second">Time can\'t be less than 15 seconds</string>
+
     <string name="profile_search">Search</string>
     <string name="profile_search_hint">App name/Package Name</string>
 
@@ -86,6 +92,8 @@
     <string name="au_l_3">Check sourcecode</string>
     <string name="au_l_4">Open source Licenses</string>
     <string name="au_l_4_1">Respect to opensource</string>
+    <string name="au_l_5">Donate</string>
+    <string name="au_l_5_1">Thanks</string>
     <string name="au_osp">Opensource Projects</string>
 
     <!--If you are translating, do not translate below-->

@@ -79,7 +79,7 @@
             android:indeterminateTint="@color/pink_colorPrimary" />
     </FrameLayout>
 
-    <io.alcatraz.facesaver.extended.NoScrollViewPager
+    <io.alcatraz.afkprotect.extended.NoScrollViewPager
         android:id="@+id/setup_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -87,7 +87,7 @@
         android:layout_marginBottom="55dp"
         android:visibility="visible">
 
-    </io.alcatraz.facesaver.extended.NoScrollViewPager>
+    </io.alcatraz.afkprotect.extended.NoScrollViewPager>
 
     <include
         layout="@layout/activity_setup_nav"

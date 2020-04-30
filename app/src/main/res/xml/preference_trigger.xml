@@ -4,7 +4,6 @@
 
         <PreferenceScreen
             android:key="ignore_trigger_package"
-            android:enabled="false"
             android:summary="@string/pref_trigger_1_summary"
             android:title="@string/pref_trigger_1_title" />
 
